@@ -1,0 +1,15 @@
+---
+
+- name: "USERADD SCRIPT"
+  hosts: amazon
+  become: true
+  tasks:
+   - name: "Creating an user now"
+     user:
+      name: admin
+      uid: 2022
+      password: "{{ 'password@123' | password_hash('sha512') }}"
+      shell: /bin/bash
+      createhome: yes
+      home: /home/admin
+      state: present
